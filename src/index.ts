@@ -2,8 +2,6 @@
 import mongoose from 'mongoose';
 import chalk from 'chalk';
 import pokemons from 'json-pokemon';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import getPokemons from 'json-pokemon/getPokemon';
 
 
 mongoose
