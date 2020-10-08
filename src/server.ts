@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import api from './routes/api';
 import { connect } from './database';
 import Pokemon from './database/schemas/pokemon';
-import mongoose from 'mongoose';
+import { isEmpty } from 'lodash';
 
 export default class Server {
   private _host: string;
@@ -19,16 +19,18 @@ export default class Server {
     await connect(process.env.DB_HOST as string);
     console.log('Database connected');
 
-    const poke = mongoose.model('pokemon');
-    console.log(poke.find());
+    const poke = Pokemon.find();
+    poke.exec(function(err, docs) {
+      if (isEmpty(docs)) {
+        const pokemon = new Pokemon({ name: 'Esteban' });
+        pokemon.save(err => {
+          if (err) {
+            console.log('sorry');
+          }
 
-    const pokemon = new Pokemon({ name: 'Esteban' });
-    pokemon.save(err => {
-      if (err) {
-        console.log('sorry');
+          console.log('pokemon saved!');
+        });
       }
-
-      console.log('pokemon saved!');
     });
 
     const app = express();

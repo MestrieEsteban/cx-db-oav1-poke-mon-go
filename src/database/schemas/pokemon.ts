@@ -1,9 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
-export default mongoose.model(
-  'Pokemon',
-  new Schema({
-    id: Number,
-    name: String,
-  }),
-);
+const schema = new Schema({
+  id: Number,
+  name: String,
+});
+
+export default mongoose.model('Pokemon', schema);
