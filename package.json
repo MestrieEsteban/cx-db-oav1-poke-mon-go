@@ -40,10 +40,12 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "@types/request": "^2.48.5",
     "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "json-pokemon": "^1.0.0",
-    "mongoose": "^5.10.8"
+    "mongoose": "^5.10.8",
+    "request": "^2.88.2"
   }
 }

@@ -5,6 +5,10 @@ import api from './routes/api';
 import { connect } from './database';
 import Pokemon from './database/schemas/pokemon';
 import { isEmpty } from 'lodash';
+import chalk from 'chalk';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const getPokemons = require('json-pokemon/getPokemon');
 
 export default class Server {
   private _host: string;
@@ -17,18 +21,25 @@ export default class Server {
 
   public async run(): Promise<void> {
     await connect(process.env.DB_HOST as string);
-    console.log('Database connected');
+    console.log(chalk.green('Connected🐱‍👤'));
+    const poked = getPokemons.getPokemonById(1);
+    // poked.forEach((element: any) => console.log(element.name));
+
+    console.log(poked.name);
 
     const poke = Pokemon.find();
     poke.exec(function(err, docs) {
       if (isEmpty(docs)) {
-        const pokemon = new Pokemon({ name: 'Esteban' });
+        const pokemon = new Pokemon({
+          name: 'Esteban',
+          type: ['Plante', 'Eau'],
+          pokeId: 2,
+        });
         pokemon.save(err => {
           if (err) {
             console.log('sorry');
           }
-
-          console.log('pokemon saved!');
+          console.log(chalk.green('pokemon saved!🦉'));
         });
       }
     });
