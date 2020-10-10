@@ -7,12 +7,14 @@ const api = Router();
 
 api.get('/', async (req: Request, res: Response) => {
   try {
-    const poke = Pokemon.find().select({
-      name: 1,
-      type: 1,
-      pokeId: 1,
-      sprite: 1,
-    });
+    const poke = Pokemon.find()
+      .select({
+        name: 1,
+        type: 1,
+        pokeId: 1,
+        sprite: 1,
+      })
+      .sort([['pokeId', 1]]);
     poke.exec(function(err, docs) {
       res.status(OK.status).json(successTest(docs));
     });

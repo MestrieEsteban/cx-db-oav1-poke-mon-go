@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "clean": "yarn rimraf .dist",
-    "build": "yarn clean && yarn babel src/ --out-dir .dist/ --extensions '.ts' --quiet",
+    "build": "yarn babel src/ --out-dir .dist --extensions '.ts' --quiet",
     "start": "yarn build && node .dist/server",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
@@ -14,7 +14,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier-format && yarn lint"
     }
   },
   "keywords": [],

@@ -37,7 +37,7 @@ export default class Server {
     const poke = Pokemon.find();
     poke.exec(function(err, docs) {
       if (isEmpty(docs)) {
-        pokedex.forEach((element) => {
+        pokedex.forEach((element: any) => {
           const pokemon = new Pokemon({
             pokeId: element.num,
             name: element.name,
