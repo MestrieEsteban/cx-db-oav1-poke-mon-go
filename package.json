@@ -1,25 +1,31 @@
 {
   "name": "typescript-starter",
   "version": "1.0.0",
-  "description": "A basic typescript app starter for newbies in 2019.",
-  "main": "index.js",
+  "description": "Pokedex",
+  "main": "main.ts",
   "scripts": {
-    "build": "rimraf ./build && tsc",
-    "start:dev": "nodemon",
-    "start": "npm run build && node build/main.js",
+    "dev": "nodemon",
+    "clean": "yarn rimraf .dist",
+    "build": "yarn clean && yarn babel src/ --out-dir .dist/ --extensions '.ts' --quiet",
+    "start": "yarn build && node .dist/server",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prettier-watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier-format && npm run lint"
+      "pre-commit": "yarn prettier-format && yarn lint"
     }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.8",
     "@types/lodash": "^4.14.161",

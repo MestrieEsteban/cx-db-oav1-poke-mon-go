@@ -7,13 +7,10 @@ const schema = new Schema({
   sprite: String,
   description: String,
   types: Array,
-  abilities: Object,
-  family: Object,
-  starter: Boolean,
-  legendary: Boolean,
-  mythical: Boolean,
-  mega: Boolean,
-  generation: Number,
+  height: String,
+  weight: String,
+  weaknesses: Array,
+  nextEvolution: Array,
 });
 
 export default mongoose.model('Pokemon', schema);
