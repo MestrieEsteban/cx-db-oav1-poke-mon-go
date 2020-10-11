@@ -15,7 +15,7 @@ export default class Server {
 
   public constructor(host: string, port: number) {
     this._host = host;
-    this._port = port;
+    this._port = port; 
   }
 
   public async run(): Promise<void> {
