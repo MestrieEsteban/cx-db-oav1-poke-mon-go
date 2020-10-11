@@ -10,7 +10,7 @@ api.get('/', async (req: Request, res: Response) => {
     const poke = Pokemon.find()
       .select({
         name: 1,
-        type: 1,
+        types: 1,
         pokeId: 1,
         sprite: 1,
       })

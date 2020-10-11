@@ -7,6 +7,7 @@ import Pokemon from './database/schemas/pokemon';
 import { isEmpty } from 'lodash';
 import chalk from 'chalk';
 import pokedex from './pokedex.json';
+import cors from 'cors';
 
 export default class Server {
   private _host: string;
@@ -24,6 +25,8 @@ export default class Server {
     await this.addPokemons();
 
     const app = express();
+    app.use(cors());
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use('/api', api);
